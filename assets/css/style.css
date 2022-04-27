@@ -21,19 +21,18 @@ body {
     line-height: 4rem;
     font-family: 'Quicksand', sans-serif;
     font-weight: 400;
-    color: rgb(70, 255, 45);
+    color: white;
     background-color: #404040;
 }
 
 header {
     margin: auto;
-    padding-top: 2rem;
 }
 
 h1 {
     text-align: center;
     font-size: 4.5rem;
-    letter-spacing: 2rem;
+    letter-spacing: 1rem;
 }
 
 main {
@@ -47,23 +46,28 @@ a {
 
 /* nav */
 nav {
+    font-weight: 700;
     margin: 2rem;
     position: relative;
     display: flex;
     justify-content: center;
 }
 
+nav a {
+    padding: 0.5rem;
+    border: solid rgba(63, 63, 63, 0.538);
+    background-image: linear-gradient(to bottom right,rgba(182, 182, 182, 0.5), rgba(0, 0, 0, 0.26));
+    border-radius: 2.5rem;
+}
+
 .seperator {
     padding: 0 4rem;
-    color: rgb(253, 210, 18);
 }
 
-.rules, #rules {
-    color: rgb(58, 216, 255);
-}
-
-.high-scores, #high-scores {
-    color: rgb(255, 61, 181);
+/* rule page */
+#game-rules {
+    text-align: center;
+    padding: 4rem 5rem;
 }
 
 /* cards */
@@ -92,16 +96,43 @@ nav {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    box-shadow: 4px 4px 4px black;
 }
 
 .outer-face{
-    filter: invert(100%);
+
+}
+
+/* text colors */
+.pink {
+    color: rgb(255, 61, 181);
+}
+
+.orange {
+    color: rgb(252, 189, 15);
+}
+
+.yellow {
+    color: rgb(238, 255, 0);
+}
+
+.green {
+    color: rgb(70, 255, 45);
+}
+
+.blue {
+    color: rgb(58, 216, 255);
+}
+
+.purple {
+    color: rgb(187, 23, 219);
 }
 
 /* footer */
 footer {
     position: relative;
+    font-weight: 700;
     text-align: center;
     font-size: 1.5rem;
-    color: rgb(253, 210, 18);
+    color: rgb(252, 189, 15);
 }
