@@ -64,13 +64,6 @@ nav a {
     padding: 0 4rem;
 }
 
-/* rule page */
-#game-rules {
-    text-align: center;
-    padding: 4rem 5rem;
-}
-
-/* home page */
 /* start button */
 #start-button {
     height: 100%;
@@ -79,42 +72,55 @@ nav a {
     border: none;
     background-color: inherit;
     font-family: inherit;
-    background-image: linear-gradient(to bottom right,rgb(252 189 15 / 60%), rgba(0, 0, 0, 0.26));
+    background-image: linear-gradient(to bottom right, rgba(252, 189, 15, .6), rgba(0, 0, 0, 0.26));
     border-radius: 2.5rem;
     font-weight: 700;
     font-size: inherit;
     cursor: pointer;
-}
-
-
-
-.start-button {
     text-align: center;
-    /* padding: 4rem 5rem; */
 }
 
+/* home page */
 /* cards */
-.flipped, .match {
-    border: solid 2px white;
-}
-
-#cards {
+.card-grid {
     max-height: 90rem;
     max-width: 45rem;
     margin: 0 auto;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+    grid-template-areas:
+    "column column column column"
+    "column column column column"
+    "column column column column"
+    ". reset . ."
 }
 
-.row {
+.card {
     display: flex;
     justify-content: center;
     min-height: 16rem;
+    perspective: 1000px;
+    place-self: center;
+    grid-column: auto;
+    grid-row: auto;
   }
   
 .column {
     width: 25%;
-    height: 7.5rem;
     margin: 1rem;
     position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    grid-area: column;
+    grid-row: auto;
+}
+
+.card > .flipped {
+    transform: rotateY(180deg);
 }
 
 .card-faces {
@@ -124,10 +130,44 @@ nav a {
     left: 50%;
     transform: translateX(-50%);
     box-shadow: 4px 4px 4px black;
+    display: block;
 }
 
-.outer-face{
+.inner-face, .outer-face {
+    transition: transform 0.6s;
+    backface-visibility: hidden;
+}
 
+.inner-face {
+    transform: rotateY(180deg);
+}
+
+/* reset button */
+#reset-button {
+    display: inline;
+    height: 4.5rem;
+    width: 28rem;
+    margin: 1.5rem;
+    border: none;
+    background-color: inherit;
+    font-family: inherit;
+    background-image: linear-gradient(to bottom right,rgb(255, 61, 181, .6), rgba(0, 0, 0, 0.26));
+    border-radius: 2.5rem;
+    font-weight: 700;
+    font-size: inherit;
+    cursor: pointer;
+    text-align: center;
+    grid-area: 4 / 2 / auto / span 2;
+    place-self: center;
+    grid-column: auto;
+    grid-row: auto;
+}
+
+
+/* rule page */
+#game-rules {
+    text-align: center;
+    padding: 4rem 5rem;
 }
 
 /* text colors */
