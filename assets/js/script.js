@@ -3,14 +3,21 @@ Create state object. State of the game when opening the page is false, or the ga
 */
 const state = {
     isPlaying: false,
+    isLocked: false,
+    matchesFound: 0,
     time: 0,
     toggleIsPlaying: function toggleIsPlaying() {
-        this.isPLaying = !this.isPlaying 
+        this.isPlaying = !this.isPlaying;
     },
     incrementTime: function incrementTime() {
-        this.time++
-    }
-    
+        this.time++;
+    },
+    incrementMatches: function incrementMatches() {
+        this.matchesFound++;
+    },
+    toggleIsLocked: function toggleIsLocked() {
+        this.isLocked = !this.isLocked;
+    },
 }
 
 /* 
@@ -19,7 +26,10 @@ Event listener activates on click and call an event function that will begin gam
 window.addEventListener('click',
 function(event) {
     if (event.target.nodeName === 'BUTTON' && event.target.id === 'start-button') {
-        startGame()
+        startGame();
+    }
+    if(event.target.classList.contains('outer-face')){
+        handleCardFlip(event.target.parentNode);
     }
 }
 )
@@ -29,7 +39,8 @@ function(event) {
 function startGame() {
     startButton = document.getElementById('start-button');
     startButton.disabled = true;
-    state.toggleIsPlaying()
+    startButton.style["cursor"] = "auto";
+    state.toggleIsPlaying();
     setInterval(function() {
         state.incrementTime();
         startButton.innerHTML = formatTime();
@@ -48,3 +59,40 @@ function formatTime() {
     if (seconds < 10) {seconds = "0"+seconds;}
     return `${minutes}:${seconds}`;
 }
+
+function handleCardFlip(card){
+    if(!state.isPlaying) return;
+    if(card.classList.contains('match')) return;
+    if(state.isLocked) return;
+
+    const previousFlippedCard = document.getElementsByClassName('flipped')[0];
+    
+    if(card.isSameNode(previousFlippedCard)) return
+    
+    card.classList.add('flipped');
+
+    if (!previousFlippedCard) return;
+
+    const previousFlippedCardImage = previousFlippedCard.firstElementChild.getAttribute("src");
+    const cardImage = card.firstElementChild.getAttribute("src");
+
+    if(previousFlippedCardImage === cardImage){
+        card.classList.add('match');
+        previousFlippedCard.classList.add('match');
+        card.classList.remove('flipped');
+        previousFlippedCard.classList.remove('flipped');
+        state.incrementMatches();
+        if(state.matchesFound === 6){
+            alert('You Won!')
+            
+        }
+        return;
+    }
+    state.toggleIsLocked();
+    setTimeout(function() {
+        card.classList.remove('flipped');
+        previousFlippedCard.classList.remove('flipped');
+        state.toggleIsLocked();
+    }, 1000) 
+}
+
