@@ -224,6 +224,11 @@ input[type=submit] {
     font-size: smaller;
 }
 
+.scoreboard-list {
+    height: 100%;
+    width: 100%;
+}
+
 /* text colors */
 .pink {
     color: rgb(255, 61, 181);
