@@ -1,11 +1,10 @@
-/*
-The gameModal object was created using W3Schools example on modals as a loose framework. https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal
+/*The gameModal object was created using W3Schools example on modals as a loose framework. https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal
 */
 const gameModal = {
     showModal: function showModal() {
         document.getElementById("game-modal").style.display = "block";
         const gameTime = document.getElementsByClassName('game-time');
-        gameTime.innerHTML = state.time; //WHAT IS HAPPENING
+        gameTime[0].innerHTML = state.time;
         console.log(state.time);
     },
     hideModal: function hideModal() {
@@ -27,6 +26,7 @@ const state = {
     isLocked: false,
     matchesFound: 0,
     time: 0,
+    timer: undefined,
     toggleIsPlaying: function toggleIsPlaying() {
         this.isPlaying = !this.isPlaying;
     },
@@ -39,6 +39,21 @@ const state = {
     toggleIsLocked: function toggleIsLocked() {
         this.isLocked = !this.isLocked;
     },
+    startTimer: function startTimer() {
+        this.timer = setInterval(function() {
+            state.incrementTime();
+            document.getElementById('start-button').innerHTML = formatTime();
+        }, 1000);
+    },
+    stopTimer: function stopTimer() {
+        clearInterval(this.timer);
+    },
+    resetGame: function resetGame() {
+        this.toggleIsPlaying();
+        this.stopTimer();
+        this.time = 0;
+        this.matchesFound = 0;
+    }
 };
 
 /* 
@@ -49,12 +64,14 @@ function(event) {
     if (event.target.nodeName === 'BUTTON' && event.target.id === 'start-button') {
         startGame();
     }
+    if (event.target.nodeName === 'BUTTON' && event.target.id === 'reset-button') {
+        resetGame();
+    }
     console.log(event.target);
     if(event.target.classList.contains('card-faces')){
         handleCardFlip(event.target.parentNode.parentNode);
-    }
-}
-);
+    };
+})
 
 /* The game begins by first disabling the button, then calling on toggleIsPlaying, then setting the interval. This function sets the interval of incremenetTime to 1s (1000ms). The formatTime function is called and changes the innerHTML of the button.
 */
@@ -62,11 +79,20 @@ function startGame() {
     startButton = document.getElementById('start-button');
     startButton.disabled = true;
     startButton.style.cursor = "auto";
-    state.toggleIsPlaying();
-    setInterval(function() {
-        state.incrementTime();
-        startButton.innerHTML = formatTime();
-    }, 1000);
+    state.toggleIsPlaying()
+    state.startTimer();
+}
+
+function resetGame() {
+    const startButton = document.getElementById('start-button');
+    const cardCollection = document.getElementsByClassName('column');
+    state.resetGame();
+    startButton.disabled = false;
+    startButton.style.cursor = "pointer";
+    startButton.innerHTML = "Start!";
+    for (let i = 0; i < cardCollection.length; i++) {
+        cardCollection[i].classList.remove('match');
+      }
 }
 
 /* 
@@ -105,7 +131,15 @@ function handleCardFlip(column){
         previousFlippedCard.classList.remove('flipped');
         state.incrementMatches();
         if(state.matchesFound === 6){
-            alert('You Won!')
+            state.stopTimer();
+            gameModal.showModal();
+            // localStorage.setItem('' state.time);
+            // let scoreList = document.getElementsByClassName('high-score-list');
+            // scoreList.innerhtml = localStorage.getItem(state.time);
+    
+            //add score to highscore list and save it to localstorage
+            //reset game (remove match on all, reset state to inital, shuffle cards (using flexbox numbers or using javascript dynamically assign the src on images))
+            //don't forget set maximum timer to lose and then if you lose show how many cards were flipped and how many moves if you want (then we need to track that)
         }
         return;
     }
@@ -115,9 +149,5 @@ function handleCardFlip(column){
         previousFlippedCard.classList.remove('flipped');
         state.toggleIsLocked();
     }, 1000);
-}
-
-function saveHighScore() {
-        
 }
 
