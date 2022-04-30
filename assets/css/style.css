@@ -175,7 +175,7 @@ nav a {
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 30rem;
+    padding-top: 25rem;
     left: 0;
     top: 0;
     width: 100%;
@@ -193,6 +193,23 @@ nav a {
     text-align: center;
     width: 80%;
     font-weight: 700;
+}
+
+input[type=submit] {
+    display: block;
+    height: 3.5rem;
+    width: 11rem;
+    margin: 1rem auto 0 auto;
+    border: none;
+    background-color: inherit;
+    font-family: inherit;
+    background-image: linear-gradient(to bottom right,rgb(58, 216, 255, 0.7), rgb(0, 0, 0));
+    border-radius: 2.5rem;
+    font-weight: 700;
+    font-size: inherit;
+    cursor: pointer;
+    color: inherit;
+    color: rgb(58, 216, 255);
 }
 
 /* rule page */

@@ -143,10 +143,16 @@
                 </div>
             </div>
         </section>     
-        <section>
+        <section class="modal-and-form">
             <div id="game-modal" class="modal">
-                <div class="purple modal-content">
-                    <p>Congratulations! You won in <span class="game-time"></span> seconds!</p>
+                <div class="modal-content">
+                    <form action="#" method="post" class="scoreboard-form">
+                        <p class="green">Congratulations! You won in <span class="game-time"></span> seconds!</p>
+                        <p class="blue">Enter your name to add to the scoreboard!</p>
+                        <label class="purple" for="score-name">Name</label>
+                        <input class="text-input" id="score-name" type="text" name="score_name" required>
+                        <input id="add-button" type="submit">
+                    </form>
                 </div>
             </div>
         </section>
