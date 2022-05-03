@@ -12,18 +12,10 @@ const gameModal = {
     }
 }
 
-const timesUp = {
-    showModal: function showModal () {
-        document.getElementById('times-up').style.display = 'block';
-    },
-    hideModal: function hideModal() {
-        document.getElementById('times-up').style.display = 'none';
-    }
-}
 
 function saveScore(playerName) {
     const scoreList = JSON.parse(window.localStorage.getItem('scoreList')) || [];
-    scoreList.push({'player-name': playerName, 'score': state.time});
+    scoreList.push({'player-name': playerName, 'time': state.time});
     scoreList.sort(function(a, b) {
         return a.score - b.score;
     });
@@ -170,6 +162,7 @@ function handleCardFlip(column){
         previousFlippedCard.classList.remove('flipped');
         state.toggleIsLocked();
     }, 1000);
-  
+    
+   
 }
 
