@@ -82,14 +82,14 @@ nav a {
 /* cards */
 .card-grid {
     max-height: 90rem;
-    max-width: 42rem;
+    max-width: 37rem;
     margin: 0 auto;
     display: grid;
     justify-items: center;
     align-items: center;
     align-content: center;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 7px;
+    grid-gap: 5px;
     grid-template-areas:
     "column column column column"
     "column column column column"
@@ -100,7 +100,7 @@ nav a {
 .card {
     display: flex;
     justify-content: center;
-    min-height: 14rem;
+    min-height: 13rem;
     perspective: 1000px;
     place-self: center;
     grid-column: auto;
@@ -108,6 +108,7 @@ nav a {
   }
   
 .column {
+    min-height: 11rem;
     width: 25%;
     margin: 1rem;
     position: relative;
@@ -127,7 +128,7 @@ nav a {
 }
 
 .card-faces {
-    max-height: 13.5rem;
+    max-height: 12rem;
     border-radius: 10%;
     position: absolute;
     left: 50%;
@@ -290,4 +291,30 @@ footer {
     text-align: center;
     font-size: 1.5rem;
     color: rgb(252, 189, 15);
+}
+
+/* for medium screens sizes from 712px wide and down */
+@media screen and (max-width: 712px){
+    body {
+        margin: 0 3rem;
+        padding: 2rem;
+    }
+
+    #game-rules {
+        padding: 0;
+    }
+    
+}
+
+/* for medium screens sizes from 554px wide and down */
+@media screen and (max-width: 554px){
+    nav {
+        display: grid;
+    }
+
+    .home {
+        padding: 0rem 1.9rem;
+        border: none;
+        background-image: none;
+    }
 }
