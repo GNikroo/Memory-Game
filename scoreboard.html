@@ -13,29 +13,28 @@
         <section id="logo">
             <h1 class="green">Scoreboard</h1>
             <nav class="nav">
-                <div class="pink"><a href="index.html">Home</a></div>
-                <div class="seperator orange">|</div>
-                <div class="blue"><a href="rules.html">Game Rules</a></div>
+                <div class="nav-buttons pink"><a href="index.html">Home</a></div>
+                <div class="nav-buttons blue"><a href="rules.html">Game Rules</a></div>
             </nav>
         </section>
     </header>
     <main>
-        <section>
-            <div class="clear">
+        <div id="scoreboard-layout">
+            <div class="clear green">
                 <p>
                     Clear your browser's cookies to reset your scoreboard.
                 </p>
             </div>
-            <div class="scoreboard-list">
-                <p><span class="name"></span><span class="new-score"></span></p>
-            </div>
-        </section>
+            <ul id="scoreboard">
+                <li><span class="blue">Name</span><span class="purple">Score</span></li>
+            </ul>
+        </div>
             </main>
     <footer class="footer">
         <p id="copyright">
             Gina Nikroo. All rights Reserved
         </p>
     </footer>
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/scores.js"></script>
 </body>
 </html>
