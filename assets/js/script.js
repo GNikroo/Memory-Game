@@ -1,23 +1,48 @@
-/*The gameModal object was created using W3Schools example on modals as a loose framework. https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal
+/*
+The gameModal and timesUp objects are similar in that they give block display to modals that are set to none display until called. gameModal also display the amount of time it took to win and sets it to the local storage. timesUp displays a message that the game has ended due to time out. 
 */
 const gameModal = {
     showModal: function showModal() {
-        document.getElementById("game-modal").style.display = "block";
+        document.getElementById('game-modal').style.display = 'block';
         const gameTime = document.getElementsByClassName('game-time');
         gameTime[0].innerHTML = state.time;
-        console.log(state.time);
     },
     hideModal: function hideModal() {
-        document.getElementById("game-modal").style.display = "none";
+        document.getElementById('game-modal').style.display = 'none';
     }
+}
+
+const timesUp = {
+    showModal: function showModal () {
+        document.getElementById('times-up').style.display = 'block';
+    },
+    hideModal: function hideModal() {
+        document.getElementById('times-up').style.display = 'none';
+    }
+}
+
+function saveScore(playerName) {
+    const scoreList = JSON.parse(window.localStorage.getItem('scoreList')) || [];
+    scoreList.push({'player-name': playerName, 'score': state.time});
+    scoreList.sort(function(a, b) {
+        return a.score - b.score;
+    });
+    window.localStorage.setItem('scoreList', JSON.stringify(scoreList));
+}
+
+function submitScore() {
+    const playerName = document.getElementById('score-name').value
+    saveScore(playerName);
+    gameModal.hideModal();
 }
 
 window.onclick = function(event) {
     const modal = document.getElementById("game-modal")
-    if (event.target == modal) {
+    if (event.target === modal) {
       modal.style.display = "none";
     }
   }
+
 /* 
 Create state object. State of the game when opening the page is false, or the game has not started. Time is at zero. When toggleIsPlaying is playing is called, it will flip the state from false to not false. When incrementTime is called, time will increase by 1.
 */
@@ -53,7 +78,7 @@ const state = {
         this.stopTimer();
         this.time = 0;
         this.matchesFound = 0;
-    }
+    } 
 };
 
 /* 
@@ -133,14 +158,10 @@ function handleCardFlip(column){
         if(state.matchesFound === 6){
             state.stopTimer();
             gameModal.showModal();
-            // localStorage.setItem('' state.time);
-            // let scoreList = document.getElementsByClassName('high-score-list');
-            // scoreList.innerhtml = localStorage.getItem(state.time);
-    
-            //add score to highscore list and save it to localstorage
-            //reset game (remove match on all, reset state to inital, shuffle cards (using flexbox numbers or using javascript dynamically assign the src on images))
-            //don't forget set maximum timer to lose and then if you lose show how many cards were flipped and how many moves if you want (then we need to track that)
+            
+            //shuffle cards (using flexbox numbers or using javascript dynamically assign the src on images))
         }
+        
         return;
     }
     state.toggleIsLocked();
@@ -149,5 +170,6 @@ function handleCardFlip(column){
         previousFlippedCard.classList.remove('flipped');
         state.toggleIsLocked();
     }, 1000);
+  
 }
 
