@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 function showAddedScores() {
     let scoreList = JSON.parse(window.localStorage.getItem('scoreList')) || [];
     let scoreboard = document.getElementById('scoreboard');
