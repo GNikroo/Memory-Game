@@ -14,15 +14,15 @@
             <h1 class="pink">Memory</h1>
         </section>
         <nav class="nav">
-            <div class="blue pill"><a href="rules.html">Game Rules</a></div>
+            <div class="home blue"><a href="rules.html">Game Rules</a></div>
             <div class="start-button">
-                <button id="start-button" class="orange">Start!</button> 
+                <button id="start-button" class="home orange">Start!</button> 
             </div>
-            <div class="green pill"><a href="scoreboard.html">Scoreboard</a></div>
+            <div class="green"><a href="scoreboard.html">Scoreboard</a></div>
         </nav>  
     </header>
     <main>
-        <section class="card-grid">
+        <div class="card-grid">
             <div class="card">
                 <div class="column">
                     <div class="inner-face">
@@ -36,7 +36,7 @@
             <div class="card">
                 <div class="column">
                     <div class="inner-face">
-                        <img class="card-faces" src="assets/images/pexels-dimitry-anikin-4836636 (1).jpg" alt="Neon lights">
+                        <img class="card-faces" src="assets/images/pexels-dimitry-anikin-4836636.jpg" alt="Neon lights">
                     </div>
                     <div class="outer-face">
                         <img class="card-faces" src="assets/images/pexels-alexander-ant-4585185.jpg" alt="Card face">                    
@@ -96,7 +96,7 @@
             <div class="card">
                 <div class="column">
                     <div class="inner-face">
-                        <img class="card-faces" src="assets/images/pexels-dimitry-anikin-4836636 (1).jpg" alt="Neon lights">
+                        <img class="card-faces" src="assets/images/pexels-dimitry-anikin-4836636.jpg" alt="Neon lights">
                     </div>
                     <div class="outer-face">
                         <img class="card-faces" src="assets/images/pexels-alexander-ant-4585185.jpg" alt="Card face">
@@ -143,22 +143,22 @@
                     </div>
                 </div>
             </div>
-        </section>     
-        <section class="modal-and-form">
+        </div>     
+        <div class="modal-and-form">
             <div id="game-modal" class="modal">
                 <div class="modal-content">
                     <form action="#" method="post" class="scoreboard-form">
                         <p class="green">Congratulations! You won in <span class="game-time"></span> seconds!</p>
                         <p class="blue">Enter your name to add to the scoreboard!</p>
                         <label class="purple" for="score-name">Name</label>
-                        <input class="text-input" id="score-name" type="text" name="score_name" required>
-                        <input id="add-button" type="submit">
+                        <input class="text-input" id="score-name" type="text" name="score-name" required>
+                        <input id="add-button" type="button" onclick="submitScore()" value="Submit form">
                     </form>
                 </div>
             </div>
-        </section>
+        </div>
         <div>
-            <button id="reset-button" class="pink">Reset</i></button>
+            <button id="reset-button" class="pink">Reset</button>
         </div>
     </main>
     <footer class="footer">
