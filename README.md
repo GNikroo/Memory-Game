@@ -1,108 +1,142 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+Readme 
 
-Welcome GNikroo,
+# Memory 
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+Memory is a classic game played by attempting to remember where objects are when hidden in order to find their pairs. I wanted to create a project that was fun and eye catching while practicing my newfound JavaScript skills. 
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+ >insert responsive design image< 
 
-## Gitpod Reminders
+The live website can be found on [GitHub Pages](https://gnikroo.github.io/Project-2/)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+To open links in a new browser tab, press CTRL + Click. 
 
-`python3 -m http.server`
+## Table of Contents 
+* [User Experience Design (UX)](#UX) 
+    * [Features](#Features) 
 
-A blue button should appear to click: _Make Public_,
+        * [Wireframes](#Wireframes) 
 
-Another blue button should appear to click: _Open Browser_.
+        * [Visual](#Visual) 
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+        * [Gameplay](#Gameplay) 
 
-A blue button should appear to click: _Make Public_,
+        * [Time Out](#Time-out) 
 
-Another blue button should appear to click: _Open Browser_.
+        * [Game End](#Game-end) 
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+        * [Modals](#Modals) 
 
-To log into the Heroku toolbelt CLI:
+        * [Gameplay](#Gameplay) 
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+* [Testing Strategy](#Testing-strategy) 
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+    * [Validator Testing](#Validator-testing) 
 
-------
+    * [Bugs](#Bugs) 
 
-## Release History
+* [Deployment](#Deployment) 
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+* [Credits](#Credits) 
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+* [Media](#Media) 
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+    * [Content](#Content) 
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+    * [Acknowledgements](#Acknowledgements) 
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+## UX 
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+The game was designed to provide a fun, time wasting game that is pleasing to the eye. It is simple and yet provides the opportunity for challenge when desired. 
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+The buttons and links are designed to be eye catching so that the user can easily find what is needed yet blends seamlessly with the overall design so as not to distract from the game. 
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+You can find the game rules and scoreboard at the top of the screen. By following either, you can easily navigate to any other page you’d like. The design is smooth with buttons and input fields rounded to complement the 1990’s, neon aesthetic of the cards and font colors. 
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+### Features 
+* Responsive Design across the range of devices available. 
+* Navigation is easy to find and utilize. 
+* Users can challenge themselves by playing against the clock and past games. 
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+* The site is fully accessible. 
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+### Wireframes 
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+#### Homepage
+![Homepage](assets/images/wireframe-pg-1.jpg)
+#### Game Rules 
+![Game Rules](assets/images/wireframe-pg-2.jpg)
+#### Scoreboard (formerly High Scores) 
+![Scoreboard](assets/images/wireframe-pg-3.jpg)
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+### Visual 
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+Get user’s total screen width and adjust size of cards accordingly 
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+### Gameplay 
 
-------
+The user can click on any card to flip it over to show the inner-face. They will be able to flip over two cards before a function is executed to: if {match, remain visible} else {become hidden}. 
 
-## FAQ about the uptime script
+### Time Out 
 
-**Why have you added this script?**
+If the user takes longer than 3 minutes to complete the game, a modal will pop up informing the user that the game has ended and ask if they would like to reset. 
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+### Game End 
 
-**How will this affect me?**
+Once all cards are flipped over, the user has won. The time can be logged to the scoreboard or the user can opt to click outside of the modal to get back to the winning game. If the user presses the reset button, the timer will reset and the cards will reshuffle.  
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+### Modals 
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+One modal that appears after winning the game. It informs the user of how long it took to win the game and prompts them to log the score to the scoreboard with a name. 
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+The second modal pops up after a three minute time out. 
 
-**So….?**
+## Testing Strategy 
+ 
+The game works in different browsers: Chrome, Firefox, Safari.
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+It is responsive, has a cohesive look, and functions across standard screen sizes using the devtools device toolbar.
 
-**Can I opt out?**
+I confirmed that the navigation (including buttons and links), logo, game rules, and scoreboard are understandable and adhere to the neon theme.
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+I have confirmed that the form works, requires a name entry to submit (by pressing Enter or clicking the Submit button), and will exit if the user clicks outside of the modal.
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+The modal appears when the game is one as expected and disappears after acheiving its function.
+ 
+### Validator Testing 
+* HTML 
+  * No errors were returned when passing through the official W3C Validator. [Report](https://validator.w3.org/nu/?doc=https%3A%2F%2Fgnikroo.github.io%2FProject-2%2F) 
+* CSS 
+  * No errors were returned when passing through the official W3C CSS Validation Service - Jigsaw. [Report](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fgnikroo.github.io%2FProject-2%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en) 
+* JavaScript 
+  * No errors were returned when passing through the validator service at JSHint.com for both .js files. 
+    * [Script Report](/assets/images/script-js.jpg)
+    * [Score Report](/assets/images/score-js.jpg) 
+* Lighthouse  
+  * The lighthouse report gave a score of 68, 100, 100, 92. ![Report](/assets/images/lighthouse.jpg) 
 
-**Anything more?**
+### Bugs 
+Bugs found included reset game button allowing the user to flip the cards even though the start game button hadn't been clicked. This was easily remedied by changing some of the names within the functions. 
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+## Deployment 
+My site was deployed to Github pages. In settings for my Memory game project repository, I selected the main branch in the source section. The link was then generated publishing the website.  
+* From the GitHub repository, select settings   
+* Click the pages link from the left-hand menu  
+* In the source section drop-down menu, choose main branch   
+* The page will then refresh with indicating successful deployment.    
 
----
+## Credits 
+### Media 
+* All images can be found on [Pexels](https://www.pexels.com/).
+* Favicon was downloaded with permission from [freefavicon](https://freefavicon.com/).  
+ 
+### Content  
 
-Happy coding!
+* The function for formatting time (formatTime) was inspired by the answer supplied by user powtac on [stackoverflow](https://stackoverflow.com/a/6313008). 
+
+* My card grid was created with the support of [CSS Tricks’](https://css-tricks.com/dont-overthink-flexbox-grids/) article on flexbox grids. 
+
+* The gameModal and timeOut object were inspired by [W3School's](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal) example on modals. 
+
+### Acknowledgements  
+ 
+* I would like to once more thank my husband, Nima Nikroo. JavaScript was nearly impossible to understand until he helped guide me through the steps needed to create the logical functions behind what makes this game work. 
