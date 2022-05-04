@@ -14,9 +14,10 @@ html {
 body {
     display: flex;
     min-height: 95vh;
-    margin: 0 7rem;
+    max-width: 95vw;
+    margin: auto;
     flex-direction: column;
-    padding: 2rem;
+    padding: 1.5rem;
     height: 100%;
     font-size: 2rem;
     line-height: 4rem;
@@ -38,6 +39,10 @@ main {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+#logo {
+    padding-bottom: 1rem;
 }
 
 /* nav */
@@ -80,16 +85,16 @@ nav a {
 
 /* home page */
 /* cards */
-.card-grid {
+#card-grid {
     max-height: 90rem;
     max-width: 37rem;
     margin: 0 auto;
     display: grid;
-    justify-items: center;
-    align-items: center;
+    justify-content: center;
     align-content: center;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 5px;
+    grid-gap: 0.5rem;
+    column-gap: 1.5rem;
     grid-template-areas:
     "column column column column"
     "column column column column"
@@ -97,17 +102,17 @@ nav a {
     ". reset . ."
 }
 
-.card {
-    display: flex;
-    justify-content: center;
-    min-height: 13rem;
+.column {
+    display: grid;
     perspective: 1000px;
     place-self: center;
     grid-column: auto;
     grid-row: auto;
+    align-items: center;
+    justify-items: center;
   }
   
-.column {
+.card {
     min-height: 11rem;
     width: 25%;
     margin: 1rem;
@@ -116,15 +121,18 @@ nav a {
     transition: transform 0.6s;
     grid-area: column;
     grid-row: auto;
+    justify-content: center;
+    align-content: center;
 }
 
-.card > .flipped {
+.column > .flipped {
     transform: rotateY(180deg);
 }
 
-.card > .match {
+.column > .match {
     transform: rotateY(180deg);
     box-shadow: 4px 4px 4px white;
+    cursor: auto;
 }
 
 .card-faces {
@@ -178,7 +186,6 @@ nav a {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
 }
 
@@ -188,8 +195,19 @@ nav a {
     padding: 20px;
     border-radius: 2.5rem;
     text-align: center;
-    width: 80%;
+    width: 60rem;
     font-weight: 700;
+}
+
+input[type=text] {
+    font-family: inherit;
+    font-size: inherit;
+    text-align: center;
+    padding: 1rem 2rem;
+    margin: 1rem 0;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 1rem;
 }
 
 input[type=submit] {
@@ -227,7 +245,9 @@ li {
 }
 
 #scoreboard-layout {
-    margin: 0 7rem;
+    margin: auto;
+    width: 50rem;
+    text-align: center;
 }
 
 li span {
@@ -243,7 +263,8 @@ li span {
 
 #scoreboard {
     height: 100%;
-    width: 100%;
+    width: 50rem;
+    margin: auto;
     text-align: center;
 }
 
@@ -295,26 +316,52 @@ footer {
 
 /* for medium screens sizes from 712px wide and down */
 @media screen and (max-width: 712px){
-    body {
-        margin: 0 3rem;
-        padding: 2rem;
-    }
-
     #game-rules {
         padding: 0;
     }
     
 }
 
-/* for medium screens sizes from 554px wide and down */
-@media screen and (max-width: 554px){
+/* for medium screens sizes from 572px wide and down */
+@media screen and (max-width: 572px){
     nav {
+        margin: auto;
         display: grid;
     }
 
-    .home {
-        padding: 0rem 1.9rem;
-        border: none;
-        background-image: none;
+    .nav-buttons {
+        padding: 1rem;
+        margin: auto;
+        background-image: unset;
+    }
+
+    #start-button {
+        padding: 1rem 0;
+    }
+}
+
+/* for medium screens sizes from 450px wide and down */
+@media screen and (max-width: 450px){
+    #card-grid {
+        max-height: 97rem;
+        max-width: 37rem;
+        margin: auto;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 6.5rem;
+    }
+
+    .reset-parent {
+        display: grid;
+        justify-content: center;
+        align-content: center;
+    }
+
+    #scoreboard-layout {
+        height: 100%;
+        width: 100%;
+    }
+
+    #scoreboard {
+        width: 100%;
     }
 }
