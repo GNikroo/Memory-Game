@@ -1,46 +1,6 @@
 /*jshint esversion: 6 */
 /*
-The gameModal and timesUp objects are similar in that they give block display to modals that are set to none display until called. gameModal also display the amount of time it took to win and sets it to the local storage. timesUp displays a message that the game has ended due to time out. 
-*/
-const gameModal = {
-    isOpen: false,
-    showModal: function showModal() {
-        this.isOpen = true;
-        document.getElementById('game-modal').style.display = 'block';
-        const gameTime = document.getElementsByClassName('game-time');
-        gameTime[0].innerHTML = state.time;
-    },
-    hideModal: function hideModal() {
-        this.isOpen = false;
-        document.getElementById('game-modal').style.display = 'none';
-    }
-};
-
-function saveScore(playerName) {
-    const scoreList = JSON.parse(window.localStorage.getItem('scoreList')) || [];
-    scoreList.push({'player-name': playerName, 'time': state.time});
-    scoreList.sort(function(a, b) {
-        return a.score - b.score;
-    });
-    window.localStorage.setItem('scoreList', JSON.stringify(scoreList));
-}
-
- function submitScore(event) {
-     event.preventDefault();
-     const playerName = document.getElementById('score-name').value;
-     saveScore(playerName);
-     gameModal.hideModal();
- }
-
-window.onclick = function(event) {
-    const modal = document.getElementById("game-modal");
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
-  };
-
-/* 
-Create state object. State of the game when opening the page is false, or the game has not started. Time is at zero. When setIsPlaying is playing is called, it will flip the state from false to not false. When incrementTime is called, time will increase by 1.
+Create initial state for game. 
 */
 const state = {
     isPlaying: false,
@@ -74,11 +34,59 @@ const state = {
         this.stopTimer();
         this.time = 0;
         this.matchesFound = 0;
-    } 
+    }
 };
 
 /* 
-Event listener activates on click and call an event function that will begin game if the button, which is both button node and start-button, is clicked.
+gameModal can be shown or hidden depending on the condition of the function
+*/
+const gameModal = {
+    isOpen: false,
+    showModal: function showModal() {
+        this.isOpen = true;
+        document.getElementById('game-modal').style.display = 'block';
+        const gameTime = document.getElementsByClassName('game-time');
+        gameTime[0].innerHTML = state.time;
+    },
+    hideModal: function hideModal() {
+        this.isOpen = false;
+        document.getElementById('game-modal').style.display = 'none';
+    }
+};
+
+/*
+The saved user input (stringified in submitScore below) is stringified before set to localstorage and then parsed when retrieving so that it can be sorted. If no array exists yet then one will be created to display the scoreList.
+*/
+function saveScore(playerName) {
+    const scoreList = JSON.parse(window.localStorage.getItem('scoreList')) || [];
+    scoreList.push({'player-name': playerName, 'time': state.time});
+    scoreList.sort(function(a, b) {
+        return a.time - b.time;
+    });
+    window.localStorage.setItem('scoreList', JSON.stringify(scoreList));
+}
+
+/*
+The user inputs a required name which is saved to playerName or they can exit modal by clicking outside of the div.
+*/
+function submitScore() {
+    const playerName = document.getElementById('score-name').value;
+    saveScore(playerName);
+    gameModal.hideModal();
+ }
+
+window.onclick = function(event) {
+    const modal = document.getElementById('game-modal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+};
+
+/*
+Event listeners: On click
+Start game if start button is clicked.
+Reset game if reset button is clicked.
+Execute handleCardFlip (flips card) if class card-face is clicked.
 */
 window.addEventListener('click', function(event) {
     if (event.target.nodeName === 'BUTTON' && event.target.id === 'start-button') {
@@ -87,96 +95,114 @@ window.addEventListener('click', function(event) {
     if (event.target.nodeName === 'BUTTON' && event.target.id === 'reset-button') {
         resetGame();
     }
-    console.log(event.target);
     if(event.target.classList.contains('card-faces')){
         handleCardFlip(event.target.parentNode.parentNode);
     }
 });
 
-const userInput = document.getElementById('score-name');
-userInput.addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        handleEnter(event)
-      document.getElementById("myBtn").click();
-    }
+/*
+Event listeners: Submit
+Execute handleEnter() if Enter is pressed.
+*/
+document.getElementById('scoreboard-form').addEventListener('submit', function(event) {
+    handleEnter(event);
+    event.preventDefault();
 });
 
+/*
+Submits score and associated name if Enter is pressed on scoreboard-form.
+*/
 function handleEnter(event) {
     if (gameModal.isOpen) submitScore(event);
 }
 
+/*
+Start game by shuffling cards, setting isPlaying (defined in initial game state), starting timer, and changing cursor styles.
+*/
 function startGame() {
     shuffleCards();
     const startButton = document.getElementById('start-button');
+    const cardGrid = document.getElementById('card-grid');
     startButton.disabled = true;
-    startButton.style.cursor = "auto";
+    startButton.style.cursor = 'auto';
+    cardGrid.style.cursor = 'pointer';
     state.setIsPlaying(true);
     state.startTimer();
 }
 
+/*
+Reset game by reversing startGame() properties and removing classes added during gameplay (in handleCardFlip function).
+*/
 function resetGame() {
     const startButton = document.getElementById('start-button');
-    const cardCollection = document.getElementsByClassName('column');
+    const cardGrid = document.getElementById('card-grid');
+    const cardCollection = document.getElementsByClassName('card');
     state.resetGame();
     startButton.disabled = false;
-    startButton.style.cursor = "pointer";
-    startButton.innerHTML = "Start!";
+    startButton.style.cursor = 'pointer';
+    cardGrid.style.cursor = 'auto';
+    startButton.innerHTML = 'Start!';
     for (let i = 0; i < cardCollection.length; i++) {
         cardCollection[i].classList.remove('match');
         cardCollection[i].classList.remove('flipped');
       }
 }
 
-/* 
-formatTime function has been inspired by https://stackoverflow.com/a/6313008. The hours are determined by the time lapsed of the state object divided by ms per hour and rounded by Math.floor. Minutes is time lapsed of the state object minus the product of number of hours lapsed times number of ms per hour. This is then divided by number of minutes per hour and rounded by Math.floor. Seconds is time lapsed of the state object minus the product of number of hours lapsed times number of ms per hour. The number of seconds times minutes is the subtracted from that product. Minutes and seconds less than the number 10 are given the number 0 to display like an analog clock.
+/*
+Timer looks like a digital clock with minutes and seconds.
 */
-function formatTime() { 
+function formatTime() {
     const hours = Math.floor(state.time / 3600);
     let minutes = Math.floor((state.time - (hours * 3600)) / 60);
     let seconds = state.time - (hours * 3600) - (minutes * 60);
 
-    if (minutes < 10) {minutes = "0"+minutes;}
-    if (seconds < 10) {seconds = "0"+seconds;}
+    if (minutes < 10) {minutes = '0'+minutes;}
+    if (seconds < 10) {seconds = '0'+seconds;}
     return `${minutes}:${seconds}`;
 }
 
-function handleCardFlip(column){ 
+/*
+When the card is flipped, the class 'flipped' is added. If it is a match, the 'match' class is added. The function compares the img src to determine if the card is a match. Once 6 matches are found, the timer stops and the game modal opens up. If two cards are not a match, isLocked is toggled (defined in the initial game state) and the timeout function flips the cards back in a second.  
+*/
+function handleCardFlip(card){
     if(!state.isPlaying) return;
-    if(column.classList.contains('match')) return;
+    if(card.classList.contains('match')) return;
     if(state.isLocked) return;
 
     const previousFlippedCard = document.getElementsByClassName('flipped')[0];
 
-    if(column.isSameNode(previousFlippedCard)) return;
-    
-    column.classList.add('flipped');
+    if(card.isSameNode(previousFlippedCard)) return;
+
+    card.classList.add('flipped');
 
     if (!previousFlippedCard) return;
 
     const previousFlippedCardImage = previousFlippedCard.getElementsByTagName('img')[0].getAttribute('src');
-    const cardImage = column.getElementsByTagName('img')[0].getAttribute('src');
+    const cardImage = card.getElementsByTagName('img')[0].getAttribute('src');
 
     if(previousFlippedCardImage === cardImage){
-        column.classList.add('match');
+        card.classList.add('match');
         previousFlippedCard.classList.add('match');
-        column.classList.remove('flipped');
+        card.classList.remove('flipped');
         previousFlippedCard.classList.remove('flipped');
         state.incrementMatches();
         if(state.matchesFound === 6){
             state.stopTimer();
             gameModal.showModal();
-        }       
+        }
         return;
     }
     state.toggleIsLocked();
     setTimeout(function() {
-        column.classList.remove('flipped');
+        card.classList.remove('flipped');
         previousFlippedCard.classList.remove('flipped');
         state.toggleIsLocked();
     }, 1000);
 }
 
+/*
+The card order is set upon initialization of startGame() which calls on shuffleCards() below. The cards are given a random card order depending on the equation randomPosition.
+*/
 function generateCardOrder() {
     const cardDeck = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
     let currentPosition = cardDeck.length, randomPosition;
@@ -185,12 +211,15 @@ function generateCardOrder() {
         currentPosition--;
         [cardDeck[currentPosition], cardDeck[randomPosition]] = [
             cardDeck[randomPosition], cardDeck[currentPosition]];
-        }
-        return cardDeck;
     }
+    return cardDeck;
+}
 
+/*
+The card column is assigned a random card position by executing (applying syle.order) generateCardOrder above. This is then iterated through the array until all cards are assigned a random position. 
+*/
 function shuffleCards() {
-    const cardCollection = document.getElementsByClassName('card');
+    const cardCollection = document.getElementsByClassName('column');
     const cardOrder = generateCardOrder();
     for (let i = 0; i < cardCollection.length; i++) {
         cardCollection[i].style.order = cardOrder[i];
