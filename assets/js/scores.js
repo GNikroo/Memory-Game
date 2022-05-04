@@ -7,8 +7,8 @@ function showAddedScores() {
         const playerName = document.createTextNode(scoreList[i]['player-name']);
         const time = document.createTextNode(scoreList[i].time);
         const li = document.createElement('li');
-        const pinkSpan = document.createElement('span')
-        const blueSpan = document.createElement('span')
+        const pinkSpan = document.createElement('span');
+        const blueSpan = document.createElement('span');
         pinkSpan.appendChild(playerName);
         li.appendChild(pinkSpan);
         blueSpan.appendChild(time);
