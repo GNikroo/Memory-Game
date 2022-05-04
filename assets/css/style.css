@@ -314,7 +314,7 @@ footer {
     color: rgb(252, 189, 15);
 }
 
-/* for medium screens sizes from 712px wide and down */
+/* for screens sizes from 712px wide and down */
 @media screen and (max-width: 712px){
     #game-rules {
         padding: 0;
@@ -322,7 +322,7 @@ footer {
     
 }
 
-/* for medium screens sizes from 572px wide and down */
+/* for screens sizes from 572px wide and down */
 @media screen and (max-width: 572px){
     nav {
         margin: auto;
@@ -340,7 +340,7 @@ footer {
     }
 }
 
-/* for medium screens sizes from 450px wide and down */
+/* for screens sizes from 450px wide and down */
 @media screen and (max-width: 450px){
     #card-grid {
         max-height: 97rem;
