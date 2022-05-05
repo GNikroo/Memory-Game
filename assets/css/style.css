@@ -101,6 +101,7 @@ nav a {
 
 .column {
     perspective: 1000px;
+    -webkit-perspective: 1000px;
     width: calc(25% - 1rem);
     position: relative;
     margin: 5px;
@@ -131,22 +132,25 @@ nav a {
 
 .inner-face, .outer-face {
     transition: transform 0.6s;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-
+    visibility:visible;
 }
 
 .inner-face {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg);    
+    -webkit-transform: rotateY(180deg);
     position: absolute;
 }
 
 .column > .flipped {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
 }
 
 .column > .match {
     transform: rotateY(180deg);
-    box-shadow: 4px 4px 4px white;
+    -webkit-transform: rotateY(180deg);
     cursor: auto;
 }
 
@@ -377,7 +381,7 @@ footer {
     }
 
     #card-grid {
-        max-width: 23rem;
+        max-width: 28rem;
 }
 
 

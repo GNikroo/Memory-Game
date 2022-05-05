@@ -21,6 +21,7 @@ const state = {
         this.isLocked = !this.isLocked;
     },
     startTimer: function startTimer() {
+        document.getElementById('start-button').innerHTML = formatTime();
         this.timer = setInterval(function() {
             state.incrementTime();
             document.getElementById('start-button').innerHTML = formatTime();
