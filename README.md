@@ -70,7 +70,10 @@ You can find the game rules and scoreboard at the top of the screen. By followin
 
 ### Visual 
 
-Get user’s total screen width and adjust size of cards accordingly 
+Get user’s total screen width and adjust size of cards accordingly.
+
+#### Buttons
+The buttons are given styles during hover and when active so that the user is aware of when an irreversable action is about to be committed.
 
 ### Gameplay 
 
@@ -84,11 +87,9 @@ If the user takes longer than 3 minutes to complete the game, a modal will pop u
 
 Once all cards are flipped over, the user has won. The time can be logged to the scoreboard or the user can opt to click outside of the modal to get back to the winning game. If the user presses the reset button, the timer will reset and the cards will reshuffle.  
 
-### Modals 
+### Modal 
 
-One modal that appears after winning the game. It informs the user of how long it took to win the game and prompts them to log the score to the scoreboard with a name. 
-
-The second modal pops up after a three minute time out. 
+A modal appears after winning the game to inform the user how long it took to win and prompts them to log the score to the scoreboard with a name.
 
 ## Testing Strategy 
  
@@ -112,7 +113,7 @@ The modal appears when the game is one as expected and disappears after acheivin
     * [Script Report](/assets/images/script-js.jpg)
     * [Score Report](/assets/images/score-js.jpg) 
 * Lighthouse  
-  * The lighthouse report gave a score of 68, 100, 100, 92. ![Report](/assets/images/lighthouse.jpg) 
+  * The lighthouse report gave a score of 68, 100, 100, 92. [Report](/assets/images/lighthouse.jpg) 
 
 ### Bugs 
 Bugs found included reset game button allowing the user to flip the cards even though the start game button hadn't been clicked. This was easily remedied by changing some of the names within the functions. 
@@ -135,7 +136,9 @@ My site was deployed to Github pages. In settings for my Memory game project rep
 
 * My card grid was created with the support of [CSS Tricks’](https://css-tricks.com/dont-overthink-flexbox-grids/) article on flexbox grids. 
 
-* The gameModal and timeOut object were inspired by [W3School's](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal) example on modals. 
+* The gameModal object was inspired by [W3School's](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal) example on modals. 
+
+* The button pseudo effects are a modified version of [Evans Pauliuts](https://codepen.io/evanscode/pen/KqWRyg) button design found on CodePen.
 
 ### Acknowledgements  
  
