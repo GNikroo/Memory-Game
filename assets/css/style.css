@@ -110,7 +110,6 @@ nav a {
 .thirds{
     width: calc(33.333% - 10px);
 }
-
   
 .card {
     transform-style: preserve-3d;
@@ -168,11 +167,21 @@ nav a {
     font-weight: 700;
     font-size: inherit;
     cursor: pointer;
-    text-align: center;
-    grid-area: 4 / 2 / auto / span 2;
-    place-self: center;
-    grid-column: auto;
-    grid-row: auto;
+    text-align: center;    
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    transition all: .3s;
+    cursor: pointer;
+}
+
+
+button:hover {
+    box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.4);
+    transform: scale(1.03);
+}
+
+button:active{
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    transform: scale(.98);
 }
 
 /* game modal */
@@ -329,6 +338,17 @@ footer {
         font-size: 1.5rem;
         padding: 1rem 0.9rem;
         background-image: linear-gradient(to bottom right,rgba(182, 182, 182, 0), rgba(0, 0, 0, 0));
+    }
+
+    nav a:hover {
+        font-size: 150%;
+        box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.4);
+        transform: scale(1.03);
+    }
+    
+    a:active{
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        transform: scale(.98);
     }
     
     #game-rules {
