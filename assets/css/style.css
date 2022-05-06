@@ -4,6 +4,7 @@
     margin: 0;
     box-sizing: border-box;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -174,7 +175,7 @@ nav a {
     cursor: pointer;
     text-align: center;    
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
-    transition all: .3s;
+    transition: all 0.3s;
     cursor: pointer;
 }
 
@@ -407,7 +408,5 @@ footer {
 
     #card-grid {
         max-width: 28rem;
+    }
 }
-
-
-
