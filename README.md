@@ -112,19 +112,18 @@ The game was designed to provide a fun, time wasting game that is pleasing to th
 
 #### VISUAL
 The size of cards is adjusted according to user’s total screen width. This allows for comfortable playing without the need to scroll during gameplay.
-![Android Dimensinos](../images/dimensions-galaxy.png)
-![iPhone Dimensions](../images/dimensions-iphone.png)
+* ![Android Dimensions](assets/images/dimensions-galaxy.png) ![iPhone Dimensions](assets/images/dimensions-iphone.png)
 
 #### BUTTONS
 The buttons are given styles during hover and when active so that the user is aware of when an irreversable action is about to be committed.
 
 #### GAMEPLAY
 The user begins the game by clicking the Start! button. The button then becomes the timer to track the time passed before winning the game. The user clicks on any card to flip it over. If a match is found, they remain flipped. If it is not found, they remain visible for one second before flipping back over.
-![Timer](../images/timer.png)
+![Timer](assets/images/timer.png)
 
 #### GAME END
 Once all cards are flipped over, the user has won. A modal appears after winning the game to inform the user how long it took to win and prompts them to log the score to the scoreboard with a name. The time can be logged to the scoreboard or the user can opt to click outside of the modal to get back to the winning game. If the user presses the reset button, the timer will reset and the cards will reshuffle.
-![Game End](../images/modal.png)
+![Game End](assets/images/modal.png)
 
 ## Testing Strategy 
  
@@ -150,9 +149,9 @@ Once all cards are flipped over, the user has won. A modal appears after winning
     * [Game Rules Report](assets/images/rule-js.png)
 * Lighthouse
   * Mobile: 93, 100, 100, 92
-    * ![Mobile](../images/lighthouse-mobile.png) 
+    * ![Mobile](assets/images/lighthouse-mobile.png) 
   * Desktop: 100, 100, 100, 90
-    * ![Desktop](../images/lighthouse-desktop.png)
+    * ![Desktop](assets/images/lighthouse-desktop.png)
 
 ### Bugs 
 One bug was found after deployment. The reset game button allowed the user to flip the cards even though the start game button hadn't been clicked. This was easily remedied by changing some of the names within the functions. 
