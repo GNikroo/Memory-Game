@@ -1,4 +1,6 @@
 /*jshint esversion: 6 */
+//The function gets the local storage and displays it after sorting.
+
 function showAddedScores() {
     let scoreList = JSON.parse(window.localStorage.getItem('scoreList')) || [];
     let scoreboard = document.getElementById('scoreboard');
@@ -17,3 +19,11 @@ function showAddedScores() {
     }
 }
 showAddedScores();
+
+// The user can clear localStorage by clicking the button.
+window.addEventListener('click', function(event) {
+    if (event.target.nodeName === 'BUTTON' && event.target.id === 'cookie-button') {
+            localStorage.clear();
+            location.reload();
+        }
+    });
