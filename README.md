@@ -61,7 +61,7 @@ To open links in a new browser tab, press CTRL + Click.
 * As someone with impaired vision, I want to be able to use a screen reader to help me play the game
 
 #### Site Functionality
-The goal of the site is to provide an easy to navigate game with an engaging design. Users have control over the level of challange (playing aginst the clock, playing against their past records, simply playing to win) as well as what happens to their information. A user can choose to store their score or not to. A user can also choose to clear their local storage at any time right from the Game Rules page. The site is written in semantic HTML allowing users to easily navigate using a screen reader. 
+The goal of the site is to provide an easy to navigate game with an engaging design. Users have control over the level of challange (playing aginst the clock, playing against their past records, simply playing to win) as well as what happens to their information. A user can choose to store their score or not to. A user can also choose to clear their local storage at any time right from the Scoreboard page. The site is written in semantic HTML allowing users to easily navigate using a screen reader. 
 
 ### Scope
 #### Features 
@@ -91,7 +91,7 @@ User Stories: Acceptance Criteria: Implementation
 * Acceptance Criteria:
   * A user should be able to choose what and when their information is stored.
 * Implementation:
-  * After winning the game, the user is prompted by the modal to put in their name which the user can ignore by clicking outside of the pop-up. If they choose to store their score, they can clear the local storage at any time by pressing the clear scoreboard button located in Game Rules. By placing the button on a seperate page, the risk for the user to accidentally press the button when reviewing the scores is lessened.
+  * After winning the game, the user is prompted by the modal to put in their name which the user can ignore by clicking outside of the pop-up. If they choose to store their score, they can clear the local storage at any time by pressing the Clear Scoreboard! button located in Scoreboard.
 > As a someone with impaired vision, I want to be able to use a screen reader to help me play the game
 * Acceptance Criteria:
   * The document should be written in semantic HTML.
@@ -109,6 +109,8 @@ User Stories: Acceptance Criteria: Implementation
 ### Surface
 The game was designed to provide a fun, time wasting game that is pleasing to the eye. It is simple and yet provides the opportunity for challenge when desired. The buttons and links are designed to be eye catching so that the user can easily find what is needed yet blends seamlessly with the overall design so as not to distract from the game. You can find the game rules and scoreboard at the top of the screen. By following either, you can easily navigate to any other page you’d like. The design is smooth with buttons and input fields rounded to complement the 1990’s, neon aesthetic of the cards and font colors. 
 ![Homepage](assets/images/homepage.png)
+![Game Rules](assets/images/game-rules.png)
+![Scoreboard](assets/images/scoreboard.png)
 
 #### VISUAL
 The size of cards is adjusted according to user’s total screen width. This allows for comfortable playing without the need to scroll during gameplay.
@@ -143,10 +145,9 @@ Once all cards are flipped over, the user has won. A modal appears after winning
 * CSS - W3C CSS Validation Service - Jigsaw
   * No errors were found. [Report](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fgnikroo.github.io%2FProject-2%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en) 
 * JavaScript - JSHint.com
-  * No errors were found for all .js files. 
+  * No errors were found for either .js files. 
     * [Script Report](assets/images/script-js.jpg)
-    * [Scoreboard Report](assets/images/score-js.jpg) 
-    * [Game Rules Report](assets/images/rule-js.png)
+    * [Scoreboard Report](assets/images/score-js.png)
 * Lighthouse
   * Mobile: 93, 100, 100, 92
     * ![Mobile](assets/images/lighthouse-mobile.png) 
