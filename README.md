@@ -6,7 +6,7 @@ Memory is a classic game played by attempting to remember where objects are when
 
 ![Responsivity](assets/images/responsive.jpg)
 
-The live website can be found on [GitHub Pages](https://gnikroo.github.io/Project-2/)
+The live website can be found on [GitHub Pages](https://gnikroo.github.io/Memory-Game/)
 
 To open links in a new browser tab, press CTRL + Click. 
 
@@ -158,7 +158,7 @@ Once all cards are flipped over, the user has won. A modal appears after winning
 One bug was found after deployment. The reset game button allowed the user to flip the cards even though the start game button hadn't been clicked. This was easily remedied by changing some of the names within the functions. 
 
 ## Deployment 
-My site was deployed to [GitHub Pages](https://gnikroo.github.io/Project-2/). In settings for my Memory game project repository, I selected the main branch in the source section. The link was then generated publishing the website.  
+My site was deployed to [GitHub Pages](https://gnikroo.github.io/Memory-Game/). In settings for my Memory game project repository, I selected the main branch in the source section. The link was then generated publishing the website.  
 * From the GitHub repository, select settings   
 * Click the pages link from the left-hand menu  
 * In the source section drop-down menu, choose main branch   
